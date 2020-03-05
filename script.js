@@ -1,20 +1,52 @@
 let numberOfSquares = 6;
-let colors = generateRandomColors(numberOfSquares);
+let colors = [];
+let pickedColor;
 let squares = document.querySelectorAll(".square");
-let pickedColor = pickColor();
 let colorDipslay = document.getElementById('display');
 let messageDisplay = document.querySelector('#message');
 let h1 = document.querySelector('h1');
 let resetBtn = document.querySelector('#reset');
 let modeButtons = document.querySelectorAll(".mode");
 
-for (let i=0; i< modeButtons.length; i++){
-    modeButtons[i].addEventListener('click', function(){
-        modeButtons[0].classList.remove('selected');
-        modeButtons[1].classList.remove('selected');
-        this.classList.add('selected');
-        (this.textContent === 'Easy') ? numberOfSquares = 3 : numberOfSquares = 6;
-        reset();
+init();
+
+function init(){
+    //mode buttons event listeners
+    setUpModeButtons();
+
+    //Set up squares
+    setUpSquares();
+
+    reset();
+}
+
+function setUpModeButtons(){
+    for (let i=0; i< modeButtons.length; i++){
+        modeButtons[i].addEventListener('click', function(){
+            modeButtons[0].classList.remove('selected');
+            modeButtons[1].classList.remove('selected');
+            this.classList.add('selected');
+            (this.textContent === 'Easy') ? numberOfSquares = 3 : numberOfSquares = 6;
+            reset();
+        });
+    }
+}
+
+function setUpSquares(){
+    squares.forEach((square, i) => {
+        //Add listener
+        squares[i].addEventListener('click', () => {
+            let clickedColor = squares[i].style.backgroundColor;
+            if (pickedColor === clickedColor) {
+                messageDisplay.textContent = 'Correct!';
+                changeColors(clickedColor);
+                h1.style.backgroundColor = clickedColor;
+                resetBtn.textContent = "Play Again?";
+            } else {
+                squares[i].style.backgroundColor = "#232323";
+                messageDisplay.textContent = 'Try Again!';
+            }
+        });
     });
 }
 
@@ -34,28 +66,6 @@ function reset(){
     resetBtn.textContent = "New Colors";
     messageDisplay.textContent = "";
 }
-
-//Display the random color to guess
-colorDipslay.textContent = pickedColor;
-
-squares.forEach((square, i) => {
-    //Add initial colors to squares
-    square.style.backgroundColor = colors[i];
-    
-    //Add listener
-    squares[i].addEventListener('click', () => {
-        let clickedColor = squares[i].style.backgroundColor;
-        if (pickedColor === clickedColor) {
-            messageDisplay.textContent = 'Correct!';
-            changeColors(clickedColor);
-            h1.style.backgroundColor = clickedColor;
-            resetBtn.textContent = "Play Again?";
-        } else {
-            squares[i].style.backgroundColor = "#232323";
-            messageDisplay.textContent = 'Try Again!';
-        }
-    });
-});
 
 resetBtn.addEventListener('click', function(){
     reset();
