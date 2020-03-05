@@ -59,55 +59,7 @@ squares.forEach((square, i) => {
 
 resetBtn.addEventListener('click', function(){
     reset();
-    // colors = generateRandomColors(numberOfSquares);
-    // pickedColor = pickColor();
-    // colorDipslay.textContent = pickedColor;
-    // squares.forEach((square,i) => {
-    //     square.style.backgroundColor = colors[i];
-    // });
-    // h1.style.backgroundColor = "steelblue";
-    // resetBtn.textContent = "New Colors";
-    // messageDisplay.textContent = "";
 });
-
-// easyBtn.addEventListener('click', function(){
-//     if (!easyBtn.classList.contains('selected')) {
-//         hardBtn.classList.remove('selected');
-//         easyBtn.classList.add('selected');
-//         numberOfSquares = 3;
-//         colors = generateRandomColors(numberOfSquares);
-//         pickedColor = pickColor();
-//         colorDipslay.textContent = pickedColor;
-//         squares.forEach((square,i) =>{
-//             if (colors[i]) {
-//                 square.style.backgroundColor = colors[i];
-//             } else {
-//                 square.style.display = 'none';
-//             }
-//         });
-//         h1.style.backgroundColor = "#232323";
-//         resetBtn.textContent = "New Colors";
-//         messageDisplay.textContent = "";
-//     }
-// });
-
-// hardBtn.addEventListener('click', function(){
-//     if (!hardBtn.classList.contains('selected')) {
-//         hardBtn.classList.add('selected');
-//         easyBtn.classList.remove('selected');
-//         numberOfSquares = 6;
-//         colors = generateRandomColors(numberOfSquares);
-//         pickedColor = pickColor();
-//         colorDipslay.textContent = pickedColor;
-//         squares.forEach((square,i) =>{
-//             square.style.backgroundColor = colors[i];
-//             square.style.display = 'block';
-//         });
-//         h1.style.backgroundColor = "#232323";
-//         resetBtn.textContent = "New Colors";
-//         messageDisplay.textContent = "";
-//     }
-// });
 
 function changeColors(color){
     //loop through all squares and change color that match the picked color
